@@ -15,7 +15,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<?> saveProduct(@RequestBody JsonElement product) {
-        return ResponseEntity.ok(productService.svaeProduct(product));
+        return ResponseEntity.ok(productService.saveProduct(product));
     }
 
     @DeleteMapping("{productId}")

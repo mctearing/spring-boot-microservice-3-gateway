@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IProductService {
 
-    JsonElement svaeProduct(JsonElement requestBody);
+    JsonElement saveProduct(JsonElement requestBody);
 
     void deleteProduct(Long productId);
 

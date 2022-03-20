@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface ITransactionServiceRequest {
     @POST("/api/transaction")
-    Call<JsonElement> saveTransaction(@Body JsonElement reJsonBody);
+    Call<JsonElement> saveTransaction(@Body JsonElement requestBody);
 
     @DELETE("/api/transaction/{transactionId}")
     Call<Void> deleteTransaction(@Path("transactionId") Long transactionId);
 
     @GET("/api/transaction/{userId}")
-    Call<List<JsonElement>> getAllTransactionOfAuthorizedUser(@Path("userId") Long userId);
+    Call<List<JsonElement>> getAllTransactionsOfAuthorizedUser(@Path("userId") Long userId);
 }

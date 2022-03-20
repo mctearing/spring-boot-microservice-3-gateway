@@ -58,5 +58,4 @@ public class RetrofitConfiguration {
                 .build()
                 .create(ITransactionServiceRequest.class);
     }
-
 }

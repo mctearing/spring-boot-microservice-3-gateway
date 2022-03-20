@@ -49,9 +49,9 @@ public class JwtProvider implements IJwtProvider {
     public JwtProvider(@Value("${authentication.jwt.private-key}") String jwtPrivateKeyStr,
                        @Value("${authentication.jwt.public-key}") String jwtPublicKeyStr) {
 
-        try {
+        KeyFactory keyFactory = getKeyFactory();
 
-            KeyFactory keyFactory = getKeyFactory();
+        try {
             Base64.Decoder decoder = Base64.getDecoder();
             PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(decoder.decode(jwtPrivateKeyStr.getBytes()));
             X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(decoder.decode(jwtPublicKeyStr.getBytes()));
@@ -61,13 +61,12 @@ public class JwtProvider implements IJwtProvider {
         } catch (Exception e) {
             throw new RuntimeException("Invalid key specification", e);
         }
-
     }
 
     @Override
     public String generateToken(UserPrincipal authentication) {
-        String authorities = authentication.getAuthorities().stream().
-                map(GrantedAuthority::getAuthority)
+        String authorities = authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining());
         return Jwts.builder().setSubject(authentication.getUsername())
                 .claim("userId", authentication.getId())
@@ -75,7 +74,6 @@ public class JwtProvider implements IJwtProvider {
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_EXPIRATION_IN_MS))
                 .signWith(jwtPrivateKey, SignatureAlgorithm.RS512)
                 .compact();
-
     }
 
     @Override
@@ -116,7 +114,6 @@ public class JwtProvider implements IJwtProvider {
         if (claims.getExpiration().before(new Date())) {
             return false;
         }
-
         return true;
     }
 
@@ -135,5 +132,4 @@ public class JwtProvider implements IJwtProvider {
             throw new RuntimeException("Unknown key generation algorithm", e);
         }
     }
-
 }

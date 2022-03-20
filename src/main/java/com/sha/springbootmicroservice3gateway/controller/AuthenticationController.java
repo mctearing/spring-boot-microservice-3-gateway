@@ -1,6 +1,5 @@
 package com.sha.springbootmicroservice3gateway.controller;
 
-
 import com.sha.springbootmicroservice3gateway.model.User;
 import com.sha.springbootmicroservice3gateway.service.IAuthenticationService;
 import com.sha.springbootmicroservice3gateway.service.IUserService;
@@ -27,7 +26,6 @@ public class AuthenticationController {
         if (userService.findByUserName(user.getUsername()).isPresent()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
-
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
     }
 
@@ -35,5 +33,4 @@ public class AuthenticationController {
     public ResponseEntity<?> signIn(@RequestBody User user) {
         return new ResponseEntity<>(authenticationService.signInAndReturnJWT(user), HttpStatus.OK);
     }
-
 }

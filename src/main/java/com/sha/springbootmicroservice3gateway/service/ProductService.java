@@ -17,7 +17,7 @@ public class ProductService implements IProductService{
     private IProductServiceRequest productServiceRequest;
 
     @Override
-    public JsonElement svaeProduct(JsonElement requestBody) {
+    public JsonElement saveProduct(JsonElement requestBody) {
         return RetrofitUtils.executeInBlock(productServiceRequest.saveProduct(requestBody));
     }
     @Override
@@ -27,6 +27,6 @@ public class ProductService implements IProductService{
 
     @Override
     public List<JsonElement> getAllProducts() {
-        return RetrofitUtils.executeInBlock(productServiceRequest.getAllProduct());
+        return RetrofitUtils.executeInBlock(productServiceRequest.getAllProducts());
     }
 }

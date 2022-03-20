@@ -14,5 +14,5 @@ public interface IProductServiceRequest {
     Call<Void> deleteProduct(@Path("productId") Long productId);
 
     @GET("/api/product")
-    Call<List<JsonElement>> getAllProduct();
+    Call<List<JsonElement>> getAllProducts();
 }

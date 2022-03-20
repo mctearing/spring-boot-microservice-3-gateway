@@ -1,6 +1,5 @@
 package com.sha.springbootmicroservice3gateway.service;
 
-
 import com.sha.springbootmicroservice3gateway.model.User;
 import com.sha.springbootmicroservice3gateway.security.UserPrincipal;
 import com.sha.springbootmicroservice3gateway.security.jwt.IJwtProvider;
@@ -29,5 +28,4 @@ public class AuthenticationService implements IAuthenticationService {
 
         return jwtProvider.generateToken(userPrincipal);
     }
-
 }
